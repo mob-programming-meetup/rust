@@ -68,6 +68,36 @@ fn test() {
 }
 
 #[test]
+fn test_digit() {
+    assert_eq!(roman_to_arabic_digit('I'), 1);
+}
+
+#[test]
 fn test_with_v() {
     assert_eq!(roman_to_arabic(String::from("V")), 5);
+}
+
+#[test]
+fn test_with_ii() {
+    assert_eq!(roman_to_arabic(String::from("II")), 2);
+}
+
+#[test]
+fn test_with_x() {
+    assert_eq!(roman_to_arabic_digit('X'), 10);
+}
+
+#[test]
+fn test_with_xv() {
+    assert_eq!(roman_to_arabic(String::from("XV")), 15);
+}
+
+#[test]
+fn test_with_iv() {
+    assert_eq!(roman_to_arabic(String::from("IV")), 4);
+}
+
+#[test]
+fn test_with_ix() {
+    assert_eq!(roman_to_arabic(String::from("IX")), 9);
 }

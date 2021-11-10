@@ -3,15 +3,34 @@
 // to enable stricter warnings.
 #![allow(unused)]
 
-pub fn roman_to_arabic(roman_value: String) -> u32 {
-    //unimplemented!()
 
-   use std::collections::HashMap as Map;
-
-   let mut mapping = Map::new();
-   mapping.insert(String::from("I"), 1);
-   mapping.insert(String::from("V"), 5);
-
-
-   *(mapping.get(&roman_value).unwrap())
+pub fn roman_to_arabic_digit(c: char) -> u32 {
+    match c {
+        'I' => 1,
+        'V' => 5,
+        'X' => 10,
+        _ => 0
+    }
 }
+
+
+////////////////////////////////////////
+// everytime we find I, we decrement one
+////////////////////////////////////////
+// if we find V or X, we increment by 5 or 10 accordingly
+// afterwards, for each I we increment by 1
+pub fn roman_to_arabic(roman_value: String) -> u32 {
+    let mut sum = 0;
+    let mut previous_digit = 0;
+
+   for c in roman_value.chars() {
+       let digit = roman_to_arabic_digit(c);
+       sum += digit;
+       if previous_digit < digit {
+           sum -= 2 * previous_digit;
+       }
+   }
+
+   sum
+}
+
